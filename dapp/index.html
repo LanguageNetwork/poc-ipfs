@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>PoC-IPFS with smart contract</title>
+  <script src="bundle.js"></script>
+</head>
+<body>
+  <h1>coinbase balance</h1>
+  <button id="watch">watch balance</button>
+  <div id="meta-mask-required"></div>
+  <div id="coinbase"></div>
+  <div id="original"></div>
+  <div id="current"></div>
+  <div id="diff"></div>
+  <h1>Add data/Files to IPFS</h1>
+  <!-- <textarea id="source">
+  </textarea> -->
+  <input type="file" id="source">
+  <button id="store">add to ipfs</button>
+  <br>
+  <div>
+      <br>
+      [ipfs hash]:<div class="content" id="hash"></div>
+      [ipfs link]:<div class="content"><a id="content" target=_blank></a></div>
+  </div>
+</body>
+</html>
