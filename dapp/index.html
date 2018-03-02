@@ -1,28 +1,328 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <title>PoC-IPFS with smart contract</title>
-  <script src="bundle.js"></script>
+    <meta charset="UTF-8"/>
+    <title>PoC-IPFS with smart contract</title>
+    <script>
+        // import PocIpfsContract from '../build/IPFS_POC.json'
+        var PocIpfsContract = web3.eth.contract(
+            [
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "getTotalPrice",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [
+                        {
+                            "name": "id",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "getIpfsById",
+                    "outputs": [
+                        {
+                            "name": "owner",
+                            "type": "address"
+                        },
+                        {
+                            "name": "fileInfo",
+                            "type": "string"
+                        },
+                        {
+                            "name": "priceWei",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [
+                        {
+                            "name": "ipfsHash",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "getIpfs",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "uint256"
+                        },
+                        {
+                            "name": "owner",
+                            "type": "address"
+                        },
+                        {
+                            "name": "fileInfo",
+                            "type": "string"
+                        },
+                        {
+                            "name": "priceWei",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [
+                        {
+                            "name": "id",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "getFullDataById",
+                    "outputs": [
+                        {
+                            "name": "owner",
+                            "type": "address"
+                        },
+                        {
+                            "name": "fileInfo",
+                            "type": "string"
+                        },
+                        {
+                            "name": "ipfsHash",
+                            "type": "string"
+                        },
+                        {
+                            "name": "priceWei",
+                            "type": "uint256"
+                        },
+                        {
+                            "name": "regDate",
+                            "type": "uint64"
+                        },
+                        {
+                            "name": "updateDate",
+                            "type": "uint64"
+                        },
+                        {
+                            "name": "sellCount",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [
+                        {
+                            "name": "_ipfsHash",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "getFullData",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "uint256"
+                        },
+                        {
+                            "name": "owner",
+                            "type": "address"
+                        },
+                        {
+                            "name": "fileInfo",
+                            "type": "string"
+                        },
+                        {
+                            "name": "ipfsHash",
+                            "type": "string"
+                        },
+                        {
+                            "name": "priceWei",
+                            "type": "uint256"
+                        },
+                        {
+                            "name": "regDate",
+                            "type": "uint64"
+                        },
+                        {
+                            "name": "updateDate",
+                            "type": "uint64"
+                        },
+                        {
+                            "name": "sellCount",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [
+                        {
+                            "name": "ipfsHash",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "getIpfsId",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "dataCount",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "constructor"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "fileInfo",
+                            "type": "string"
+                        },
+                        {
+                            "name": "ipfsHash",
+                            "type": "string"
+                        },
+                        {
+                            "name": "priceWei",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "addData",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": false,
+                            "name": "ipfsHash",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "alreadyExist",
+                    "type": "event"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "id",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "buyData",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bool"
+                        }
+                    ],
+                    "payable": true,
+                    "stateMutability": "payable",
+                    "type": "function"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": false,
+                            "name": "id",
+                            "type": "uint256"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "fileInfo",
+                            "type": "string"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "ipfsHash",
+                            "type": "string"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "priceWei",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "dataAdded",
+                    "type": "event"
+                }
+            ]
+        );
+
+        var Contract;
+    </script>
+    <script src="bundle.js"></script>
 </head>
 <body>
-  <h1>coinbase balance</h1>
-  <button id="watch">watch balance</button>
-  <div id="meta-mask-required"></div>
-  <div id="coinbase"></div>
-  <div id="original"></div>
-  <div id="current"></div>
-  <div id="diff"></div>
-  <h1>Add data/Files to IPFS</h1>
-  <!-- <textarea id="source">
-  </textarea> -->
-  <input type="file" id="source">
-  <button id="store">add to ipfs</button>
-  <br>
-  <div>
-      <br>
-      [ipfs hash]:<div class="content" id="hash"></div>
-      [ipfs link]:<div class="content"><a id="content" target=_blank></a></div>
-  </div>
+<h1>coinbase balance</h1>
+<button id="watch">watch balance</button>
+<div id="meta-mask-required"></div>
+<div id="coinbase"></div>
+<div id="original"></div>
+<div id="current"></div>
+<div id="diff"></div>
+<h1>Add data/Files to IPFS</h1>
+<!-- <textarea id="source">
+</textarea> -->
+<input type="file" id="source">
+price(ETH):<input type="text" id="price" value="0">
+<button id="store">add to ipfs</button>
+<br>
+<br>
+[ipfs hash]:<div class="content" id="ipfs-hash"></div><br>
+[ipfs link]:<div class="content"><a id="content" target=_blank></a></div><br>
+[ipfs count]:<div class="content" id="ipfs-count"></div><br>
+[ipfs owner]:<div class="content" id="ipfs-owner"></div><br>
+[ipfs price]:<div class="content" id="ipfs-price"></div><br>
+<a href="https://ropsten.etherscan.io/address/0x811ccfc7f5735de40b493a84688a1b2964d2900c" target="_blank">[contract tx]:</a>
+<div class="content" id="contract-tx"></div><br>
+[ipfs content]:<div class="content"><img src="" id="content-image"></div><br>
 </body>
 </html>

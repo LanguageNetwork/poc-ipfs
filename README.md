@@ -21,13 +21,18 @@ A quick (and dirty way to get it done) is:
 Once the daemon is on, run the following commands within this folder:
 
 ```bash
+> cd dapp
 > npm install
 > npm start
 ```
 
 Now open your browser at `http://localhost:8888`
 
-![imag](dapp/img/img.png)
+![imag](dapp/img/ipfs-example.gif)
 
 
 
+## Check Contract Transactions
+
+- Ropsten
+    - contract address: [0x811ccfc7f5735de40b493a84688a1b2964d2900c](https://ropsten.etherscan.io/address/0x811ccfc7f5735de40b493a84688a1b2964d2900c)
